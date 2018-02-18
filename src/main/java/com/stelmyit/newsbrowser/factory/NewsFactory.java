@@ -17,8 +17,8 @@ public class NewsFactory {
 	@Autowired
 	private ArticleFactory articleFactory;
 
-	public News create(NewsFullDTO dto) {
+	public News create(NewsFullDTO dto, Country country, Category category) {
 		List<Article> articles = articleFactory.create(dto.getArticles());
-		return News.Builder.getInstance().category(Category.TECHNOLOGY).country(Country.PL).articles(articles).build();
+		return News.Builder.getInstance().category(category).country(country).articles(articles).build();
 	}
 }

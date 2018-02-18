@@ -36,7 +36,7 @@ public class NewsService {
 			String json = jsonCreator.create(url);
 			JsonParser<NewsFullDTO> jsonParser = jsonParserFactory.getParser(NewsFullDTO.class);
 			NewsFullDTO newsDto = jsonParser.parse(json);
-			news = newsFactory.create(newsDto);
+			news = newsFactory.create(newsDto, country, category);
 		} catch (MalformedURLException e) {
 			LOGGER.log(Level.SEVERE, "Cannot get URL from News API", e);
 		}
