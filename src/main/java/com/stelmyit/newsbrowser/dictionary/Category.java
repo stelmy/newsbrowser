@@ -1,4 +1,4 @@
-package com.stelmyit.newsbrowser.controllers.news;
+package com.stelmyit.newsbrowser.dictionary;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;

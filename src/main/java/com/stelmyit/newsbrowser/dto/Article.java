@@ -1,4 +1,4 @@
-package com.stelmyit.newsbrowser.controllers.news;
+package com.stelmyit.newsbrowser.dto;
 
 import java.util.Date;
 
@@ -7,13 +7,12 @@ public class Article {
 	private String author;
 	private String title;
 	private String description;
-	// TODO: replace with custom Day class
 	private Date date;
 	private String sourceName;
 	private String articleUrl;
 	private String imageUrl;
 
-	private Article(ArticleBuilder builder) {
+	private Article(Builder builder) {
 		this.author = builder.author;
 		this.title = builder.title;
 		this.description = builder.description;
@@ -51,51 +50,54 @@ public class Article {
 		return imageUrl;
 	}
 
-	public static class ArticleBuilder {
+	public static class Builder {
 		private String author;
 		private String title;
 		private String description;
-		// TODO: replace with custom Day class
 		private Date date;
 		private String sourceName;
 		private String articleUrl;
 		private String imageUrl;
 
-		public ArticleBuilder() {
+		private Builder() {
 			// default constructor
 		}
+		
+		public static Builder getInstance() {
+			return new Builder();
+		}
 
-		public ArticleBuilder author(String author) {
+		public Builder author(String author) {
 			this.author = author;
 			return this;
 		}
 
-		public ArticleBuilder title(String title) {
+		public Builder title(String title) {
 			this.title = title;
 			return this;
 		}
 
-		public ArticleBuilder description(String description) {
+		public Builder description(String description) {
 			this.description = description;
 			return this;
 		}
 
-		public ArticleBuilder date(Date date) {
+		public Builder date(Date date) {
 			this.date = date;
 			return this;
 		}
 
-		public ArticleBuilder sourceName(String sourceName) {
+		public Builder sourceName(String sourceName) {
 			this.sourceName = sourceName;
 			return this;
 		}
 
-		public ArticleBuilder articleUrl(String articleUrl) {
+		public Builder articleUrl(String articleUrl) {
 			this.articleUrl = articleUrl;
 			return this;
 		}
 
-		public ArticleBuilder imageUrl(String imageUrl) {
+		public Builder imageUrl(String imageUrl) {
 			this.imageUrl = imageUrl;
 			return this;
 		}
