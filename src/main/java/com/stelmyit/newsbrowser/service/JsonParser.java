@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class JsonParser<T> {
 	private static final Logger LOGGER = Logger.getLogger(JsonParser.class.getName());
 
-	final Class<T> clazz;
+	private final Class<T> clazz;
 
 	public JsonParser(Class<T> clazz) {
 		this.clazz = clazz;

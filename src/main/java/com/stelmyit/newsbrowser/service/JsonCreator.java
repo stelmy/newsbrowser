@@ -10,11 +10,13 @@ import java.util.logging.Logger;
 
 import org.springframework.stereotype.Service;
 
+import com.stelmyit.newsbrowser.exception.NewsBrowserException;
+
 @Service
 public class JsonCreator {
 	private static final Logger LOGGER = Logger.getLogger(JsonCreator.class.getName());
 
-	public String create(URL url) {
+	public String create(URL url) throws NewsBrowserException {
 		String json = null;
 
 		try {
@@ -28,7 +30,7 @@ public class JsonCreator {
 			InputStream inputStream = connection.getInputStream();
 			json = new Scanner(inputStream, "UTF-8").useDelimiter("\\Z").next();
 		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Connection error during JSON creation.", e);
+			throw new NewsBrowserException("Connection error during JSON creation.");
 		}
 		return json;
 	}

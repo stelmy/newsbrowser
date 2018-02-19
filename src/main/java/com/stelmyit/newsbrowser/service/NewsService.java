@@ -12,6 +12,7 @@ import com.stelmyit.newsbrowser.dictionary.Category;
 import com.stelmyit.newsbrowser.dictionary.Country;
 import com.stelmyit.newsbrowser.dto.News;
 import com.stelmyit.newsbrowser.dto.NewsFullDTO;
+import com.stelmyit.newsbrowser.exception.NewsBrowserException;
 import com.stelmyit.newsbrowser.factory.NewsFactory;
 
 @Service
@@ -28,7 +29,7 @@ public class NewsService {
 	@Autowired
 	private NewsFactory newsFactory;
 
-	public News getNews(Country country, Category category) {
+	public News getNews(Country country, Category category) throws NewsBrowserException {
 		News news = null;
 
 		try {
