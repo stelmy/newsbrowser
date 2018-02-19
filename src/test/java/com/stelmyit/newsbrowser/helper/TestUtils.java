@@ -12,7 +12,7 @@ public class TestUtils {
 	public static String getTextFromFile(String path) {
 		String text = null;
 		try {
-			Scanner scanner = new Scanner(new FileReader("src/main/resources/" + path));
+			Scanner scanner = new Scanner(new FileReader("src/test/resources/" + path));
 			StringBuilder stringBuilder = new StringBuilder();
 			while (scanner.hasNext()) {
 				stringBuilder.append(scanner.next());

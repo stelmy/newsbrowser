@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import com.stelmyit.newsbrowser.dictionary.Category;
 import com.stelmyit.newsbrowser.dictionary.Country;
@@ -19,7 +20,7 @@ public class NewsFactoryTest {
 
 	@Before
 	public void before() {
-		newsFactory = new NewsFactory();
+		newsFactory = getNewsFactory();
 		newsTestFactory = new NewsFullDtoTestFactory();
 	}
 
@@ -39,4 +40,10 @@ public class NewsFactoryTest {
 		assertTrue(news.getArticles().size() > 0);
 	}
 
+	private NewsFactory getNewsFactory() {
+		newsFactory = new NewsFactory();
+		ArticleFactory articleFactory = new ArticleFactory();
+		ReflectionTestUtils.setField(newsFactory, "articleFactory", articleFactory);
+		return newsFactory;
+	}
 }

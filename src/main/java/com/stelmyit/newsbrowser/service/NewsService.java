@@ -1,9 +1,7 @@
 package com.stelmyit.newsbrowser.service;
 
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,14 +9,13 @@ import org.springframework.stereotype.Service;
 import com.stelmyit.newsbrowser.dictionary.Category;
 import com.stelmyit.newsbrowser.dictionary.Country;
 import com.stelmyit.newsbrowser.dto.News;
+import com.stelmyit.newsbrowser.dto.NewsApiParameter;
 import com.stelmyit.newsbrowser.dto.NewsFullDTO;
 import com.stelmyit.newsbrowser.exception.NewsBrowserException;
 import com.stelmyit.newsbrowser.factory.NewsFactory;
 
 @Service
 public class NewsService {
-	private static final Logger LOGGER = Logger.getLogger(NewsService.class.getName());
-	private static final String API_KEY = "1740f93e6fdf4e80a3c654514e5704ee";
 
 	@Autowired
 	private JsonParserFactory<NewsFullDTO> jsonParserFactory;
@@ -29,26 +26,20 @@ public class NewsService {
 	@Autowired
 	private NewsFactory newsFactory;
 
+	@Autowired
+	private NewsApiUrlGenerator newsApiUrlGenerator;
+
+	@Autowired
+	private NewsApiParameterFactory newsApiParameterFactory;
+
 	public News getNews(Country country, Category category) throws NewsBrowserException {
-		News news = null;
-
-		try {
-			URL url = getUrl(country, category);
-			String json = jsonCreator.create(url);
-			JsonParser<NewsFullDTO> jsonParser = jsonParserFactory.getParser(NewsFullDTO.class);
-			NewsFullDTO newsDto = jsonParser.parse(json);
-			news = newsFactory.create(newsDto, country, category);
-		} catch (MalformedURLException e) {
-			LOGGER.log(Level.SEVERE, "Cannot get URL from News API", e);
-		}
-
-		return news;
-
+		Map<NewsApiParameter, String> parameters = newsApiParameterFactory.createTopHeadlinesParameters(country,
+				category);
+		URL url = newsApiUrlGenerator.generateTopHeadlines(parameters);
+		String json = jsonCreator.create(url);
+		JsonParser<NewsFullDTO> jsonParser = jsonParserFactory.getParser(NewsFullDTO.class);
+		NewsFullDTO newsDto = jsonParser.parse(json);
+		return newsFactory.create(newsDto, country, category);
 	}
 
-	private URL getUrl(Country country, Category category) throws MalformedURLException {
-		String url = String.format("https://newsapi.org/v2/top-headlines?category=%s&country=%s&apiKey=%s",
-				category.getName(), country.getCode(), API_KEY);
-		return new URL(url);
-	}
 }
