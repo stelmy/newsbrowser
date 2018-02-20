@@ -17,29 +17,28 @@ import com.stelmyit.newsbrowser.factory.NewsFactory;
 @Service
 public class NewsService {
 
-	@Autowired
-	private JsonParserFactory<NewsFullDTO> jsonParserFactory;
+  @Autowired
+  private JsonParserFactory<NewsFullDTO> jsonParserFactory;
 
-	@Autowired
-	private JsonCreator jsonCreator;
+  @Autowired
+  private JsonCreator jsonCreator;
 
-	@Autowired
-	private NewsFactory newsFactory;
+  @Autowired
+  private NewsFactory newsFactory;
 
-	@Autowired
-	private NewsApiUrlGenerator newsApiUrlGenerator;
+  @Autowired
+  private NewsApiUrlGenerator newsApiUrlGenerator;
 
-	@Autowired
-	private NewsApiParameterFactory newsApiParameterFactory;
+  @Autowired
+  private NewsApiParameterFactory newsApiParameterFactory;
 
-	public News getNews(Country country, Category category) throws NewsBrowserException {
-		Map<NewsApiParameter, String> parameters = newsApiParameterFactory.createTopHeadlinesParameters(country,
-				category);
-		URL url = newsApiUrlGenerator.generateTopHeadlines(parameters);
-		String json = jsonCreator.create(url);
-		JsonParser<NewsFullDTO> jsonParser = jsonParserFactory.getParser(NewsFullDTO.class);
-		NewsFullDTO newsDto = jsonParser.parse(json);
-		return newsFactory.create(newsDto, country, category);
-	}
+  public News getNews(Country country, Category category) throws NewsBrowserException {
+    Map<NewsApiParameter, String> parameters = newsApiParameterFactory.createTopHeadlinesParameters(country, category);
+    URL url = newsApiUrlGenerator.generateTopHeadlines(parameters);
+    String json = jsonCreator.create(url);
+    JsonParser<NewsFullDTO> jsonParser = jsonParserFactory.getParser(NewsFullDTO.class);
+    NewsFullDTO newsDto = jsonParser.parse(json);
+    return newsFactory.create(newsDto, country, category);
+  }
 
 }

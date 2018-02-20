@@ -10,32 +10,32 @@ import com.stelmyit.newsbrowser.dto.NewsFullDTO;
 
 public class NewsFullDtoTestBuilder {
 
-	private NewsFullDTO news;
+  private NewsFullDTO news;
 
-	private NewsFullDtoTestBuilder() {
-		news = new NewsFullDTO();
-	}
+  private NewsFullDtoTestBuilder() {
+    news = new NewsFullDTO();
+  }
 
-	public static NewsFullDtoTestBuilder getInstance() {
-		return new NewsFullDtoTestBuilder();
-	}
+  public static NewsFullDtoTestBuilder getInstance() {
+    return new NewsFullDtoTestBuilder();
+  }
 
-	public NewsFullDTO build() {
-		return news;
-	}
+  public NewsFullDTO build() {
+    return news;
+  }
 
-	public NewsFullDtoTestBuilder status(NewsStatus status) {
-		ReflectionTestUtils.setField(news, "status", status);
-		return this;
-	}
+  public NewsFullDtoTestBuilder status(NewsStatus status) {
+    ReflectionTestUtils.setField(news, "status", status);
+    return this;
+  }
 
-	public NewsFullDtoTestBuilder totalResults(int totalResults) {
-		ReflectionTestUtils.setField(news, "totalResults", totalResults);
-		return this;
-	}
+  public NewsFullDtoTestBuilder totalResults(int totalResults) {
+    ReflectionTestUtils.setField(news, "totalResults", totalResults);
+    return this;
+  }
 
-	public NewsFullDtoTestBuilder articles(List<ArticleFullDTO> articles) {
-		ReflectionTestUtils.setField(news, "articles", articles);
-		return this;
-	}
+  public NewsFullDtoTestBuilder articles(List<ArticleFullDTO> articles) {
+    ReflectionTestUtils.setField(news, "articles", articles);
+    return this;
+  }
 }

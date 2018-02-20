@@ -11,13 +11,13 @@ import com.stelmyit.newsbrowser.dto.NewsApiParameter;
 
 @Component
 public class NewsApiParameterFactory {
-	private static final String API_KEY = "1740f93e6fdf4e80a3c654514e5704ee";
+  private static final String API_KEY = "1740f93e6fdf4e80a3c654514e5704ee";
 
-	public Map<NewsApiParameter, String> createTopHeadlinesParameters(Country country, Category category) {
-		Map<NewsApiParameter, String> parameters = new HashMap<>();
-		parameters.put(NewsApiParameter.COUNTRY, country.getCode());
-		parameters.put(NewsApiParameter.CATEGORY, category.getName());
-		parameters.put(NewsApiParameter.API_KEY, API_KEY);
-		return parameters;
-	}
+  public Map<NewsApiParameter, String> createTopHeadlinesParameters(Country country, Category category) {
+    Map<NewsApiParameter, String> parameters = new HashMap<>();
+    parameters.put(NewsApiParameter.COUNTRY, country.getCode());
+    parameters.put(NewsApiParameter.CATEGORY, category.getName());
+    parameters.put(NewsApiParameter.API_KEY, API_KEY);
+    return parameters;
+  }
 }

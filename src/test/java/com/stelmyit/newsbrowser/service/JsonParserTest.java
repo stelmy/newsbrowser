@@ -10,17 +10,17 @@ import com.stelmyit.newsbrowser.helper.TestUtils;
 
 public class JsonParserTest {
 
-	@Test
-	public void shouldReceiveParsedObject() {
-		// Given
-		JsonParser<NewsFullDTO> parser = new JsonParser<>(NewsFullDTO.class);
-		String json = TestUtils.getTextFromFile("news.json");
+  @Test
+  public void shouldReceiveParsedObject() {
+    // Given
+    JsonParser<NewsFullDTO> parser = new JsonParser<>(NewsFullDTO.class);
+    String json = TestUtils.getTextFromFile("news.json");
 
-		// When
-		NewsFullDTO news = parser.parse(json);
+    // When
+    NewsFullDTO news = parser.parse(json);
 
-		// Then
-		assertTrue(OK.equals(news.getStatus()));
-	}
+    // Then
+    assertTrue(OK.equals(news.getStatus()));
+  }
 
 }

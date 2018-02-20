@@ -7,25 +7,25 @@ import com.stelmyit.newsbrowser.dictionary.NewsStatus;
 
 public class NewsFullDTO {
 
-	@JsonProperty
-	private NewsStatus status;
+  @JsonProperty
+  private NewsStatus status;
 
-	@JsonProperty
-	private int totalResults;
+  @JsonProperty
+  private int totalResults;
 
-	@JsonProperty
-	private List<ArticleFullDTO> articles;
+  @JsonProperty
+  private List<ArticleFullDTO> articles;
 
-	public NewsStatus getStatus() {
-		return status;
-	}
+  public NewsStatus getStatus() {
+    return status;
+  }
 
-	public int getTotalResults() {
-		return totalResults;
-	}
+  public int getTotalResults() {
+    return totalResults;
+  }
 
-	public List<ArticleFullDTO> getArticles() {
-		return articles;
-	}
+  public List<ArticleFullDTO> getArticles() {
+    return articles;
+  }
 
 }

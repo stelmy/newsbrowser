@@ -17,38 +17,38 @@ import org.junit.Test;
 import com.stelmyit.newsbrowser.dto.NewsApiParameter;
 
 public class NewsApiUrlGeneratorTest {
-	private static final String TEST_API_KEY = "TEST_API_KEY";
-	private NewsApiUrlGenerator newsApiUrlGenerator;
+  private static final String TEST_API_KEY = "TEST_API_KEY";
+  private NewsApiUrlGenerator newsApiUrlGenerator;
 
-	public NewsApiUrlGeneratorTest() {
-		this.newsApiUrlGenerator = new NewsApiUrlGenerator();
-	}
+  public NewsApiUrlGeneratorTest() {
+    this.newsApiUrlGenerator = new NewsApiUrlGenerator();
+  }
 
-	@Test
-	public void shouldGenerateUrl() {
-		// Given
-		Map<NewsApiParameter, String> parameters = new LinkedHashMap<>();
-		parameters.put(CATEGORY, TECHNOLOGY.getName());
-		parameters.put(COUNTRY, PL.getCode());
-		parameters.put(API_KEY, TEST_API_KEY);
+  @Test
+  public void shouldGenerateUrl() {
+    // Given
+    Map<NewsApiParameter, String> parameters = new LinkedHashMap<>();
+    parameters.put(CATEGORY, TECHNOLOGY.getName());
+    parameters.put(COUNTRY, PL.getCode());
+    parameters.put(API_KEY, TEST_API_KEY);
 
-		// When
-		URL url = newsApiUrlGenerator.generateTopHeadlines(parameters);
+    // When
+    URL url = newsApiUrlGenerator.generateTopHeadlines(parameters);
 
-		// Then
-		assertEquals("https://newsapi.org/v2/top-headlines?category=technology&country=pl&apiKey=TEST_API_KEY",
-				url.toString());
-	}
+    // Then
+    assertEquals("https://newsapi.org/v2/top-headlines?category=technology&country=pl&apiKey=TEST_API_KEY",
+        url.toString());
+  }
 
-	@Test
-	public void shouldNotGenerateUrl_noParameters() {
-		// Given
-		Map<NewsApiParameter, String> parameters = new LinkedHashMap<>();
+  @Test
+  public void shouldNotGenerateUrl_noParameters() {
+    // Given
+    Map<NewsApiParameter, String> parameters = new LinkedHashMap<>();
 
-		// When
-		URL url = newsApiUrlGenerator.generateTopHeadlines(parameters);
+    // When
+    URL url = newsApiUrlGenerator.generateTopHeadlines(parameters);
 
-		// Then
-		assertNull(url);
-	}
+    // Then
+    assertNull(url);
+  }
 }

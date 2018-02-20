@@ -15,35 +15,35 @@ import com.stelmyit.newsbrowser.helper.NewsFullDtoTestFactory;
 
 public class NewsFactoryTest {
 
-	private NewsFactory newsFactory;
-	private NewsFullDtoTestFactory newsTestFactory;
+  private NewsFactory newsFactory;
+  private NewsFullDtoTestFactory newsTestFactory;
 
-	@Before
-	public void before() {
-		newsFactory = getNewsFactory();
-		newsTestFactory = new NewsFullDtoTestFactory();
-	}
+  @Before
+  public void before() {
+    newsFactory = getNewsFactory();
+    newsTestFactory = new NewsFullDtoTestFactory();
+  }
 
-	@Test
-	public void shouldCreateNews() {
-		// Given
-		NewsFullDTO dto = newsTestFactory.createFullDto();
-		Category category = Category.TECHNOLOGY;
-		Country country = Country.PL;
+  @Test
+  public void shouldCreateNews() {
+    // Given
+    NewsFullDTO dto = newsTestFactory.createFullDto();
+    Category category = Category.TECHNOLOGY;
+    Country country = Country.PL;
 
-		// When
-		News news = newsFactory.create(dto, country, category);
+    // When
+    News news = newsFactory.create(dto, country, category);
 
-		// Then
-		assertEquals(category, news.getCategory());
-		assertEquals(country, news.getCountry());
-		assertTrue(news.getArticles().size() > 0);
-	}
+    // Then
+    assertEquals(category, news.getCategory());
+    assertEquals(country, news.getCountry());
+    assertTrue(news.getArticles().size() > 0);
+  }
 
-	private NewsFactory getNewsFactory() {
-		newsFactory = new NewsFactory();
-		ArticleFactory articleFactory = new ArticleFactory();
-		ReflectionTestUtils.setField(newsFactory, "articleFactory", articleFactory);
-		return newsFactory;
-	}
+  private NewsFactory getNewsFactory() {
+    newsFactory = new NewsFactory();
+    ArticleFactory articleFactory = new ArticleFactory();
+    ReflectionTestUtils.setField(newsFactory, "articleFactory", articleFactory);
+    return newsFactory;
+  }
 }

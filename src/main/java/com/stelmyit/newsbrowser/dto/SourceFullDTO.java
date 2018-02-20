@@ -4,18 +4,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SourceFullDTO {
 
-	@JsonProperty
-	private Long id;
+  @JsonProperty
+  private Long id;
 
-	@JsonProperty
-	private String name;
+  @JsonProperty
+  private String name;
 
-	public String getName() {
-		return name;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
 }

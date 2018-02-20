@@ -18,26 +18,25 @@ import com.stelmyit.newsbrowser.dto.NewsApiParameter;
 
 public class NewsApiParameterFactoryTest {
 
-	private NewsApiParameterFactory newsApiParameterFactory;
+  private NewsApiParameterFactory newsApiParameterFactory;
 
-	public NewsApiParameterFactoryTest() {
-		newsApiParameterFactory = new NewsApiParameterFactory();
-	}
+  public NewsApiParameterFactoryTest() {
+    newsApiParameterFactory = new NewsApiParameterFactory();
+  }
 
-	@Test
-	public void shouldCreateTopHeadlinesParameters() {
-		// Given
-		Category category = TECHNOLOGY;
-		Country country = PL;
+  @Test
+  public void shouldCreateTopHeadlinesParameters() {
+    // Given
+    Category category = TECHNOLOGY;
+    Country country = PL;
 
-		// When
-		Map<NewsApiParameter, String> parameters = newsApiParameterFactory.createTopHeadlinesParameters(country,
-				category);
+    // When
+    Map<NewsApiParameter, String> parameters = newsApiParameterFactory.createTopHeadlinesParameters(country, category);
 
-		// Then
-		assertEquals(TECHNOLOGY.getName(), parameters.get(CATEGORY));
-		assertEquals(PL.getCode(), parameters.get(COUNTRY));
-		assertNotNull(parameters.get(API_KEY));
+    // Then
+    assertEquals(TECHNOLOGY.getName(), parameters.get(CATEGORY));
+    assertEquals(PL.getCode(), parameters.get(COUNTRY));
+    assertNotNull(parameters.get(API_KEY));
 
-	}
+  }
 }

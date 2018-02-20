@@ -5,17 +5,17 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum NewsStatus {
-	OK("ok");
+  OK("ok");
 
-	private String name;
+  private String name;
 
-	private NewsStatus(String name) {
-		this.name = name;
-	}
+  private NewsStatus(String name) {
+    this.name = name;
+  }
 
-	@JsonValue
-	public String getName() {
-		return name;
-	}
+  @JsonValue
+  public String getName() {
+    return name;
+  }
 
 }

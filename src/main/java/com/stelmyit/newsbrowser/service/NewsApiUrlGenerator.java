@@ -16,30 +16,30 @@ import com.stelmyit.newsbrowser.dto.NewsApiParameter;
 
 @Component
 public class NewsApiUrlGenerator {
-	private static final Logger LOGGER = Logger.getLogger(NewsApiUrlGenerator.class.getName());
+  private static final Logger LOGGER = Logger.getLogger(NewsApiUrlGenerator.class.getName());
 
-	public URL generateTopHeadlines(Map<NewsApiParameter, String> parameters) {
-		URL url = null;
-		try {
-			if (CollectionUtils.isEmpty(parameters)) {
-				return null;
-			}
+  public URL generateTopHeadlines(Map<NewsApiParameter, String> parameters) {
+    URL url = null;
+    try {
+      if (CollectionUtils.isEmpty(parameters)) {
+        return null;
+      }
 
-			List<String> parameterValues = new ArrayList<>();
-			for (Entry<NewsApiParameter, String> entry : parameters.entrySet()) {
-				String name = entry.getKey().getName();
-				String value = entry.getValue();
-				parameterValues.add(String.format("%s=%s", name, value));
-			}
+      List<String> parameterValues = new ArrayList<>();
+      for (Entry<NewsApiParameter, String> entry : parameters.entrySet()) {
+        String name = entry.getKey().getName();
+        String value = entry.getValue();
+        parameterValues.add(String.format("%s=%s", name, value));
+      }
 
-			String parametersJoined = String.join("&", parameterValues);
+      String parametersJoined = String.join("&", parameterValues);
 
-			url = new URL(String.format("https://newsapi.org/v2/top-headlines?%s", parametersJoined));
-		} catch (MalformedURLException e) {
-			LOGGER.log(Level.SEVERE, "Cannot receive URL.", e);
-		}
+      url = new URL(String.format("https://newsapi.org/v2/top-headlines?%s", parametersJoined));
+    } catch (MalformedURLException e) {
+      LOGGER.log(Level.SEVERE, "Cannot receive URL.", e);
+    }
 
-		return url;
+    return url;
 
-	}
+  }
 }

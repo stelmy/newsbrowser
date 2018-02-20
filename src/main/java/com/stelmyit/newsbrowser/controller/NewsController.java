@@ -15,15 +15,15 @@ import com.stelmyit.newsbrowser.service.NewsService;
 @RestController
 public class NewsController {
 
-	@Autowired
-	private NewsService newsService;
+  @Autowired
+  private NewsService newsService;
 
-	@RequestMapping(value = "news/{lang}/{category}", method = RequestMethod.GET)
-	public News test(@PathVariable("lang") String countryCode, @PathVariable("category") String categoryName)
-			throws NewsBrowserException {
-		Country country = Country.create(countryCode);
-		Category category = Category.create(categoryName);
-		return newsService.getNews(country, category);
-	}
+  @RequestMapping(value = "news/{lang}/{category}", method = RequestMethod.GET)
+  public News test(@PathVariable("lang") String countryCode, @PathVariable("category") String categoryName)
+      throws NewsBrowserException {
+    Country country = Country.create(countryCode);
+    Category category = Category.create(categoryName);
+    return newsService.getNews(country, category);
+  }
 
 }
