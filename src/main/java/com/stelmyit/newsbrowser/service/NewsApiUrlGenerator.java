@@ -2,14 +2,15 @@ package com.stelmyit.newsbrowser.service;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import com.stelmyit.newsbrowser.dto.NewsApiParameter;
 
@@ -20,7 +21,11 @@ public class NewsApiUrlGenerator {
 	public URL generateTopHeadlines(Map<NewsApiParameter, String> parameters) {
 		URL url = null;
 		try {
-			Set<String> parameterValues = new HashSet<>();
+			if (CollectionUtils.isEmpty(parameters)) {
+				return null;
+			}
+
+			List<String> parameterValues = new ArrayList<>();
 			for (Entry<NewsApiParameter, String> entry : parameters.entrySet()) {
 				String name = entry.getKey().getName();
 				String value = entry.getValue();
