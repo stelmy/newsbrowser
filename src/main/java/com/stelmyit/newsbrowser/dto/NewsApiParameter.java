@@ -1,7 +1,7 @@
 package com.stelmyit.newsbrowser.dto;
 
 public enum NewsApiParameter {
-  CATEGORY("category"), COUNTRY("country"), API_KEY("apiKey");
+  CATEGORY("category"), COUNTRY("country"), API_KEY("apiKey"), QUERY("q");
 
   private String name;
 

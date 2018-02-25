@@ -12,13 +12,14 @@ import java.util.logging.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import com.stelmyit.newsbrowser.dictionary.UrlHeader;
 import com.stelmyit.newsbrowser.dto.NewsApiParameter;
 
 @Component
 public class NewsApiUrlGenerator {
   private static final Logger LOGGER = Logger.getLogger(NewsApiUrlGenerator.class.getName());
 
-  public URL generateTopHeadlines(Map<NewsApiParameter, String> parameters) {
+  public URL generateUrl(UrlHeader header, Map<NewsApiParameter, String> parameters) {
     URL url = null;
     try {
       if (CollectionUtils.isEmpty(parameters)) {
@@ -34,12 +35,11 @@ public class NewsApiUrlGenerator {
 
       String parametersJoined = String.join("&", parameterValues);
 
-      url = new URL(String.format("https://newsapi.org/v2/top-headlines?%s", parametersJoined));
+      url = new URL(String.format("https://newsapi.org/v2/%s?%s", header.getName(), parametersJoined));
     } catch (MalformedURLException e) {
       LOGGER.log(Level.SEVERE, "Cannot receive URL.", e);
     }
 
     return url;
-
   }
 }

@@ -14,6 +14,7 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import com.stelmyit.newsbrowser.dictionary.UrlHeader;
 import com.stelmyit.newsbrowser.dto.NewsApiParameter;
 
 public class NewsApiUrlGeneratorTest {
@@ -28,12 +29,12 @@ public class NewsApiUrlGeneratorTest {
   public void shouldGenerateUrl() {
     // Given
     Map<NewsApiParameter, String> parameters = new LinkedHashMap<>();
-    parameters.put(CATEGORY, TECHNOLOGY.getName());
+    parameters.put(CATEGORY, TECHNOLOGY.getId());
     parameters.put(COUNTRY, PL.getCode());
     parameters.put(API_KEY, TEST_API_KEY);
 
     // When
-    URL url = newsApiUrlGenerator.generateTopHeadlines(parameters);
+    URL url = newsApiUrlGenerator.generateUrl(UrlHeader.TOP_HEADLINES, parameters);
 
     // Then
     assertEquals("https://newsapi.org/v2/top-headlines?category=technology&country=pl&apiKey=TEST_API_KEY",
@@ -46,7 +47,7 @@ public class NewsApiUrlGeneratorTest {
     Map<NewsApiParameter, String> parameters = new LinkedHashMap<>();
 
     // When
-    URL url = newsApiUrlGenerator.generateTopHeadlines(parameters);
+    URL url = newsApiUrlGenerator.generateUrl(UrlHeader.TOP_HEADLINES, parameters);
 
     // Then
     assertNull(url);

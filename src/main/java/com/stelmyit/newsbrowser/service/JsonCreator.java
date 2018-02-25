@@ -15,6 +15,7 @@ public class JsonCreator {
 
   public String create(URL url) throws NewsBrowserException {
     String json = null;
+    System.out.println(url);
 
     try {
       HttpURLConnection connection = (HttpURLConnection) url.openConnection();

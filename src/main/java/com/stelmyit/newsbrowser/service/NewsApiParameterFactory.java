@@ -20,4 +20,12 @@ public class NewsApiParameterFactory {
     parameters.put(NewsApiParameter.API_KEY, API_KEY);
     return parameters;
   }
+
+  public Map<NewsApiParameter, String> createSearchParameters(String query) {
+    Map<NewsApiParameter, String> parameters = new HashMap<>();
+    parameters.put(NewsApiParameter.QUERY, query);
+    parameters.put(NewsApiParameter.API_KEY, API_KEY);
+    return parameters;
+  }
+
 }

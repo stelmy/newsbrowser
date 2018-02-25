@@ -5,8 +5,10 @@ import static com.stelmyit.newsbrowser.dictionary.Country.PL;
 import static com.stelmyit.newsbrowser.dto.NewsApiParameter.API_KEY;
 import static com.stelmyit.newsbrowser.dto.NewsApiParameter.CATEGORY;
 import static com.stelmyit.newsbrowser.dto.NewsApiParameter.COUNTRY;
+import static com.stelmyit.newsbrowser.dto.NewsApiParameter.QUERY;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.util.Map;
 
@@ -34,9 +36,24 @@ public class NewsApiParameterFactoryTest {
     Map<NewsApiParameter, String> parameters = newsApiParameterFactory.createTopHeadlinesParameters(country, category);
 
     // Then
-    assertEquals(TECHNOLOGY.getName(), parameters.get(CATEGORY));
-    assertEquals(PL.getCode(), parameters.get(COUNTRY));
+    assertEquals(category.getId(), parameters.get(CATEGORY));
+    assertEquals(country.getCode(), parameters.get(COUNTRY));
+    assertNull(parameters.get(QUERY));
     assertNotNull(parameters.get(API_KEY));
+  }
 
+  @Test
+  public void shouldCreateSearchParameters() {
+    // Given
+    String query = "haslo";
+    
+    // When
+    Map<NewsApiParameter, String> parameters = newsApiParameterFactory.createSearchParameters(query);
+
+    // Then
+    assertEquals(query, parameters.get(QUERY));
+    assertNull(parameters.get(CATEGORY));
+    assertNull(parameters.get(COUNTRY));
+    assertNotNull(parameters.get(API_KEY));
   }
 }

@@ -25,4 +25,5 @@ public class NewsFactory {
         .articles(articles)
         .build();
   }
+  
 }
