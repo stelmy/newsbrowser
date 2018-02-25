@@ -3,6 +3,7 @@ package com.stelmyit.newsbrowser.service;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.assertj.core.api.Assertions;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

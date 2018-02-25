@@ -16,7 +16,7 @@ public class NewsApiParameterFactory {
   public Map<NewsApiParameter, String> createTopHeadlinesParameters(Country country, Category category) {
     Map<NewsApiParameter, String> parameters = new HashMap<>();
     parameters.put(NewsApiParameter.COUNTRY, country.getCode());
-    parameters.put(NewsApiParameter.CATEGORY, category.getName());
+    parameters.put(NewsApiParameter.CATEGORY, category.getId());
     parameters.put(NewsApiParameter.API_KEY, API_KEY);
     return parameters;
   }
