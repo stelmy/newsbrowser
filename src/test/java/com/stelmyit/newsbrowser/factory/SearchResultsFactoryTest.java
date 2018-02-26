@@ -11,19 +11,17 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.stelmyit.newsbrowser.dictionary.Category;
-import com.stelmyit.newsbrowser.dictionary.Country;
 import com.stelmyit.newsbrowser.dto.ArticleFullDTO;
-import com.stelmyit.newsbrowser.dto.News;
 import com.stelmyit.newsbrowser.dto.NewsFullDTO;
+import com.stelmyit.newsbrowser.dto.SearchResults;
 import com.stelmyit.newsbrowser.helper.NewsFullDtoTestFactory;
 
 @RunWith(MockitoJUnitRunner.class)
-public class NewsFactoryTest {
+public class SearchResultsFactoryTest {
   private NewsFullDtoTestFactory newsTestFactory;
 
   @InjectMocks
-  private NewsFactory newsFactory;
+  private SearchResultsFactory searchResultsFactory;
 
   @Mock
   private ArticleFactory articleFactory;
@@ -35,19 +33,38 @@ public class NewsFactoryTest {
   }
 
   @Test
-  public void shouldCreateNews() {
+  public void shouldCreateSearchResults() {
     // Given
     NewsFullDTO dto = newsTestFactory.createFullDto();
-    Category category = Category.TECHNOLOGY;
-    Country country = Country.PL;
 
     // When
-    News news = newsFactory.create(dto, country, category);
+    SearchResults searchResults = searchResultsFactory.create(dto);
 
     // Then
-    assertEquals(category, news.getCategory());
-    assertEquals(country, news.getCountry());
-    assertTrue(news.getArticles().size() > 0);
+    assertTrue(searchResults.getArticles().size() > 0);
   }
 
+  @Test
+  public void shouldCreateSearchResults_twoFullPages() {
+    // Given
+    NewsFullDTO dto = newsTestFactory.createFullDtoWithTotalResults(20);
+
+    // When
+    SearchResults searchResults = searchResultsFactory.create(dto);
+
+    // Then
+    assertEquals(2, searchResults.getTotalPages());
+  }
+
+  @Test
+  public void shouldCreateSearchResults_overTwoPages() {
+    // Given
+    NewsFullDTO dto = newsTestFactory.createFullDtoWithTotalResults(21);
+
+    // When
+    SearchResults searchResults = searchResultsFactory.create(dto);
+
+    // Then
+    assertEquals(3, searchResults.getTotalPages());
+  }
 }

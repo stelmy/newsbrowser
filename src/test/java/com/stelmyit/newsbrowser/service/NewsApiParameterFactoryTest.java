@@ -48,7 +48,7 @@ public class NewsApiParameterFactoryTest {
     String query = "haslo";
     
     // When
-    Map<NewsApiParameter, String> parameters = newsApiParameterFactory.createSearchParameters(query);
+    Map<NewsApiParameter, String> parameters = newsApiParameterFactory.createSearchParameters(query, 1);
 
     // Then
     assertEquals(query, parameters.get(QUERY));

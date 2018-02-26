@@ -6,4 +6,9 @@ public class NewsBrowserException extends Exception {
   public NewsBrowserException(String message) {
     super(message);
   }
+
+  public NewsBrowserException(String message, Throwable cause) {
+    super(message, cause);
+  }
+  
 }

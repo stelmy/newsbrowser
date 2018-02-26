@@ -26,6 +26,7 @@ import com.stelmyit.newsbrowser.dto.NewsFullDTO;
 import com.stelmyit.newsbrowser.exception.NewsBrowserException;
 import com.stelmyit.newsbrowser.factory.ArticleFactory;
 import com.stelmyit.newsbrowser.factory.NewsFactory;
+import com.stelmyit.newsbrowser.factory.SearchResultsFactory;
 import com.stelmyit.newsbrowser.helper.NewsFullDtoTestFactory;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -61,6 +62,9 @@ public class NewsServiceTest {
   @Mock
   private ArticleFactory articleFactory;
 
+  @Mock
+  private SearchResultsFactory searchResultFactory;
+
   @Before
   public void before() throws NewsBrowserException {
     when(newsApiParameterFactory.createTopHeadlinesParameters(any(Country.class), any(Category.class)))
@@ -91,10 +95,10 @@ public class NewsServiceTest {
     String query = "test";
 
     // When
-    newsService.search(query);
+    newsService.search(query, 1);
 
     // Then
-    verify(articleFactory).create(newsFullDTO.getArticles());
+    verify(searchResultFactory).create(newsFullDTO);
   }
 
 }

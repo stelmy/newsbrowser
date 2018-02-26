@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.Scanner;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.stelmyit.newsbrowser.exception.NewsBrowserException;
 
@@ -14,9 +15,12 @@ import com.stelmyit.newsbrowser.exception.NewsBrowserException;
 public class JsonCreator {
 
   public String create(URL url) throws NewsBrowserException {
-    String json = null;
-    System.out.println(url);
-
+    
+    if (StringUtils.containsWhitespace(url.toString())) {
+      throw new NewsBrowserException("URL cannot contain whitespaces");
+    }
+    
+    String json = null; 
     try {
       HttpURLConnection connection = (HttpURLConnection) url.openConnection();
       connection.setDoOutput(true);
@@ -28,7 +32,7 @@ public class JsonCreator {
       InputStream inputStream = connection.getInputStream();
       json = new Scanner(inputStream, "UTF-8").useDelimiter("\\Z").next();
     } catch (IOException e) {
-      throw new NewsBrowserException("Connection error during JSON creation.");
+      throw new NewsBrowserException("Connection error during JSON creation. URL = " + url.toString(), e);
     }
     return json;
   }

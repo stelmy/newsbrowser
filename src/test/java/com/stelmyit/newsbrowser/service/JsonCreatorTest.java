@@ -3,7 +3,6 @@ package com.stelmyit.newsbrowser.service;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.assertj.core.api.Assertions;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,14 +32,17 @@ public class JsonCreatorTest {
     Assert.assertEquals('}', json.charAt(json.length() - 1));
   }
 
-  @Test(expected = NewsBrowserException.class)
+  @Test
   public void shouldNotGetJson_invalidUrl() throws MalformedURLException, NewsBrowserException {
     // Given
     URL url = new URL("https://newsapi.org/v2/top-headlines?country=us&apiKey=X");
 
-    // When
-    jsonCreator.create(url);
-
-    // Then should throw an exception
+    // When & Then
+    try {
+      jsonCreator.create(url);
+      Assert.fail("No exception thrown.");
+    } catch (NewsBrowserException e) {
+      // ok, exception should be thrown
+    }
   }
 }

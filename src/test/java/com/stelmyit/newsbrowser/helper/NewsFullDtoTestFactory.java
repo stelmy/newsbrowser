@@ -16,11 +16,16 @@ public class NewsFullDtoTestFactory {
   }
 
   public NewsFullDTO createFullDto() {
+    return createFullDtoWithTotalResults(TEST_TOTAL_RESULTS);
+  }
+  
+  public NewsFullDTO createFullDtoWithTotalResults(int totalResults) {
     ArticleFullDTO articleDto = articleTestFactory.createFullDto();
     return NewsFullDtoTestBuilder.getInstance()
         .status(TEST_STATUS)
-        .totalResults(TEST_TOTAL_RESULTS)
+        .totalResults(totalResults)
         .articles(Arrays.asList(articleDto))
         .build();
   }
+
 }
