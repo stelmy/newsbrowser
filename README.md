@@ -16,4 +16,6 @@
 
 ## API
 ### Top News
+http://localhost:8080/news/{lang}/{category}
 ### Searching
+http://localhost:8080/news/search/{query}/{page}
